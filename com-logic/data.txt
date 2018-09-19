@@ -1,0 +1,1 @@
+Write the boolean expression for the logic network that have a 1 output when X=1,Y=0,Z=0;X=1,Y=1,Z=0; and" X=1,Y=1,Z=1. The circuit will have a 0 output for all other sets of input values. Simplify the expression derived and draw a block diagram for the simplified expression.

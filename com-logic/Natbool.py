@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize,sent_tokenize
 
 
 
-#=================Text data aquisition===============================
+#=================Text data aquisition process===============================
 with open('data.txt', 'r') as myfile:
     example_sentence=myfile.read().replace('\n', '')
 

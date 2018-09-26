@@ -4,7 +4,7 @@ import csv
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize,sent_tokenize
 
-
+number_of_questions = 1
 
 #=================Text data aquisition process===============================
 with open('data.txt', 'r') as myfile:
@@ -29,7 +29,7 @@ CD_count = 0
 NN_count = 0
 Dot_count = 0
 Comma_count = 0
-def ne_addition(sents,JJ_count):
+def ne_addition(sents):
     try:
         for i in sents:
             words = word_tokenize(i)
@@ -58,7 +58,7 @@ def ne_addition(sents,JJ_count):
     except Exception as e:
         print(str(e))
 
-ne_addition(sents,JJ_count)
+ne_addition(sents)
 
 print(res)
 
@@ -89,7 +89,6 @@ for tag in res:
 print(JJ_count)
 print(DT_count)
 print(VBD_count)
-print(VBD_count)
 print(NNS_count)
 print(VBP_count)
 print(NNP_count)
@@ -115,14 +114,10 @@ def pos_addition(sents):
             #print(chunked_data)
             #chunked_data.draw();
 
-
-
     except Exception as e:
         print(str(e))
 
 pos_addition(sents)
-
-
 
 #====================Stemming=================================
 '''
@@ -142,5 +137,15 @@ pos_addition(sents)
 '''
 #=============================================================
 
+#===================== classification ========================
+import xgboost as xgb
+import numpy as np
+import pandas as pd
+df = pd.DataFrame([[number_of_questions, JJ_count, DT_count, VBD_count, NNS_count, VBP_count, NNP_count, CD_count, NN_count, Dot_count, Comma_count]], columns=list(['Problem Number', 'JJ', 'DT', 'VBD', 'NNS', 'VBP', 'NNP', 'CD', 'NN', 'Dot', 'Comma']))
+df2 = pd.DataFrame([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10]], columns=list(['Problem Number', 'JJ', 'DT', 'VBD', 'NNS', 'VBP', 'NNP', 'CD', 'NN', 'Dot', 'Comma']))
+# for i in range(number_of_questions):
+# print(df)
+df = df.append(df2, ignore_index=True)
+print(df)
 
 

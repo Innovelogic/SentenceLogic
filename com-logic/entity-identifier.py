@@ -1,6 +1,6 @@
 import nltk
 
-with open('sample.txt', 'r') as f:
+with open('data/sample.txt', 'r') as f:
     sample = f.read()
 
 sentences = nltk.sent_tokenize(sample)
@@ -29,8 +29,4 @@ for tree in chunked_sentences:
 
     entity_names.extend(extract_entity_names(tree))
 
-# Print all entity names
-# print entity_names
-
-# Print unique entity names
 print(set(entity_names))

@@ -1,1 +1,0 @@
-A fire alarm system consist of three sensors S1, S2 and S3 to detect smoke, flame and heat respectively. A sensor can either be active (sends the logical value 1) or inactive (sends the logical value 0). The system automatically triggers the fire alarm when at least two of the sensors are active.

@@ -171,7 +171,7 @@ print(df)
 #     example_sentence = myfile.read().replace('\n', '')
 
 # ===============Stop Words in English ===============================
-# stop_words = set(stopwords.words("english"))
+stop_words = set(stopwords.words("english"))
 
 # ==================Tokenize the sentences============================
 
@@ -208,5 +208,9 @@ print(df)
 # ===================== classification ========================
 import xgboost as xgb
 import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
 
-# print(df2)
+kmean = KMeans (n_clusters=8, random_state=0).fit(df)
+print(kmean.labels_)
+

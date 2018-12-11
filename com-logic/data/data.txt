@@ -1,4 +1,3 @@
-<<<<<<< HEAD:com-logic/data/data.txt
 Write the boolean expression for the logic network that have a 1 output when X=1,Y=0,Z=0;X=1,Y=1,Z=0; and X=1,Y=1,Z=1. The circuit will have a 0 output for all other sets of input values. Simplify the expression derived and draw a block diagram for the simplified expression.
 Q.Derive the Boolean expression for a gating network that will have an output of 0 only when X=1, Y=1, Z=1; X=0, Y=0, Z=0; X=1, Y=0, Z=0. The outputs are to be 1 for all other cases.
 Q.If there is a logic network which is having three inputs A,B and C where the result will be one only when A=1, B=0, C=1; A=1,B=1,C=0 or A=1,B=1,C=1. Develop a Boolean expression to given conditions.

@@ -2,28 +2,10 @@ import nltk
 import  re
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize,sent_tokenize
+from nltk.stem import PorterStemmer
+
 with open('data/data2.txt', 'r') as myfile:
-    example_sentence = myfile.read().replace('\n', '')
-
-
-def pos_addition(filtered_sentences):
-    try:
-        filtered_conjunctions = []
-
-        for i in filtered_sentences:
-            words = word_tokenize(i)
-            filtered_sentence = []
-            filtered_conjunctions = []
-            for w in words:
-                if w not in stop_words:
-                    filtered_sentence.append(w)
-                else:
-                    filtered_conjunctions.append(w)
-            tagged = nltk.pos_tag(filtered_sentence)
-            print(tagged)
-        print("Stop words in the text : ", str(filtered_conjunctions))
-    except Exception as e:
-        print(str(e))
+    example_sentence = myfile.read().replace('\n', '') # example text is read from data2.txt
 
 
 def extract_nn(sent):
@@ -38,55 +20,67 @@ def extract_nn(sent):
     chunker = nltk.RegexpParser(grammar)
     ne = set()
     chunk = chunker.parse(nltk.pos_tag(nltk.word_tokenize(sent)))
-  #  chunk.draw()
+    print(nltk.pos_tag(nltk.word_tokenize(sent)))
     for tree in chunk.subtrees(filter=lambda t: t.label() == 'NP'):
         ne.add(' '.join([child[0] for child in tree.leaves()]))
     return ne
 
-
 stop_words = set(stopwords.words("english"))
 sentences = sent_tokenize(example_sentence)
+ps = PorterStemmer() # Stemmer declaration
+
 print('Sample problem :' + str(example_sentence))
-pos_addition(sentences)
+
 entity_set = extract_nn(example_sentence)
 print('Entity Set:' + str(entity_set))
 
-outputIndiators = ['then','results','generates','creates','gives','turns']
-intputIndiators = ['and','if','is','when']
+#features = ['then','result','generate','create','give','turn','operate','start']
+
+outputIndicators = ['then','will','activate''generate','create','give','turn','operate','start']
+inputIndicators = ['and','if','only','when','either','all']
 
 neighbourDic = {}  # neighbours dictionary (word->[neighbours])
 inputSet=set()    # set ot inputs
 outputSet =set()  # set ot inputs
-otherelement =set() # others
 
-for sent in sentences:
+for sentence in sentences:
     for entity in entity_set:
-        r1 = re.search(r"(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,2}"+entity+"(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,2}",sent)  # get the surrounded words of a given word
-        neighbourDic[entity]=word_tokenize(r1.group());
+        r1 = re.search(r"(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,2}"+entity+"(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,2}",sentence)  # get the surrounded words of a given word
 
-for word in neighbourDic:
-    neighbs =neighbourDic[word]
-    for neighb in neighbs:
-        if(neighb in intputIndiators):    # comaprison with input indicators
-            inputSet.add(word)
-        elif(neighb in outputIndiators):  # comparison with output indicators
-            outputSet.add(word)
+        if(r1 is None):
+            continue
         else:
-            otherelement.add(word)
+            print(r1.group())
+            neighbourDic[entity]=word_tokenize(r1.group());
 
+# presenceAbsence = {}
+# for entity in entity_set:
+#     neighbs =neighbourDic[entity]
+#     stemNeigbs =[]
+#     for neigbh in neighbs:
+#         stemNeigbs.append(ps.stem(neigbh))
+#     temporaryList = []
+#     for feature in features:
+#         if(feature in stemNeigbs):
+#             temporaryList.append(1)
+#         else:
+#             temporaryList.append(0)
+#     presenceAbsence[entity]=temporaryList
+
+# print(presenceAbsence)
+
+
+for entity in entity_set:
+    neighbs =neighbourDic[entity]
+    stemNeigbs =[]
+    for neigbh in neighbs:
+        stemNeigbs.append(ps.stem(neigbh))
+    for stemWord in stemNeigbs:
+        if(stemWord in inputIndicators): # check whether a stemword is inside input indicators
+            inputSet.add(entity)
+        elif(stemWord in outputIndicators): # check whether a stemword is inside output indicators
+            outputSet.add(entity)
 
 print("Inputs :",inputSet)
 print("Outputs :",outputSet)
-
-
-
-
-
-
-
-
-
-
-
-
 

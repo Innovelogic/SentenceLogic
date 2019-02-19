@@ -1,4 +1,4 @@
-from nltk import word_tokenize, sent_tokenize, pos_tag, ne_chunk, RegexpParser,ne_chunk,Tree
+from nltk import word_tokenize, sent_tokenize, pos_tag, RegexpParser,ne_chunk,Tree
 
 
 class EntityExtractor:

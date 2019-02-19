@@ -5,7 +5,7 @@ from nltk.stem import WordNetLemmatizer
 
 
 class InputOutputIdentifier:
-    outputIndicators = ['then', 'will', 'activate''generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring','switch']
+    outputIndicators = ['then', 'will', 'activate','generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring','switch']
     inputIndicators = ['and','or','if','only','when','either','all']
 
     def __init__(self, entity_set,text):
@@ -35,8 +35,10 @@ class InputOutputIdentifier:
             # print(neighbours)
 
             stem_neighbours = []
+            #print(neighbours)
             for neighbour in neighbours:
                 stem_neighbours.append(lemma.lemmatize(neighbour, pos = 'v'))
+            #print(stem_neighbours)
             for stem_neighbour in stem_neighbours:
                 if stem_neighbour in InputOutputIdentifier.inputIndicators:  # check whether a stem word is inside input indicators
                     self.input_set.add(entity)

@@ -28,10 +28,10 @@ def conversion_method(sentences,input_output_identifier):
         input_output_dic['I' + chr(x)] = input
         x = x + 1
 
-    x = ord('A')
+    x = ord('Z')
     for output in input_output_identifier.output_set:
         input_output_dic['O' + chr(x)] = output
-        x = x + 1
+        x = x - 1
     print(input_output_dic)
     conversion = sentences
     for word in input_output_dic:
@@ -40,22 +40,22 @@ def conversion_method(sentences,input_output_identifier):
     print(conversion)
 
 
-def method_one():
+def method_two():
     print("===========================Regex based normal Extraction Approach============================================")
 
-    entity_extractor = EntityExtractor(example_sentence)
+    entity_extractor = EntityExtractor(sample_sentences)
     entity_extractor.extraction_with_regex()
     print(entity_extractor.entitySet)
 
-    input_output_identifier = InputOutputIdentifier(entity_extractor.entitySet,example_sentence)
+    input_output_identifier = InputOutputIdentifier(entity_extractor.entitySet,sample_sentences)
     input_output_identifier.neighbourhood_based_identification()
 
-    conversion_method(example_sentence, input_output_identifier)
+    conversion_method(sample_sentences, input_output_identifier)
 
     print("=============================================================================================================\n")
 
 
-def method_two():
+def method_three():
 
 
     print("========================Regex based Verb analysed Extraction Approach========================================")
@@ -69,23 +69,21 @@ def method_two():
     input_output_identifier = InputOutputIdentifier(entity_extractor.entitySet,sample_sentences)
     input_output_identifier.neighbourhood_based_identification()
 
-
-
     conversion_method(sample_sentences,input_output_identifier)
     print("=============================================================================================================\n")
 
 
-def method_three():
+def method_one():
 
     print("====================================NER based Extraction Approach============================================")
-    entity_extractor = EntityExtractor(example_sentence)
+    entity_extractor = EntityExtractor(sample_sentences)
     entity_extractor.extraction_with_ner()
     print(entity_extractor.entitySet)
 
-    input_output_identifier = InputOutputIdentifier(entity_extractor.entitySet,example_sentence)
+    input_output_identifier = InputOutputIdentifier(entity_extractor.entitySet,sample_sentences)
     input_output_identifier.neighbourhood_based_identification()
 
-    conversion_method(example_sentence,input_output_identifier)
+    conversion_method(sample_sentences,input_output_identifier)
     print("=============================================================================================================")
 
 
@@ -113,4 +111,6 @@ for word in entity_referencer.referencing_Dic:
 
 
 # Start the process
+method_one()
 method_two()
+method_three()

@@ -10,7 +10,7 @@ class EntityReferencer:
     def refer_entities(self):
 
         tagged_sentences = [pos_tag(word_tokenize(token)) for token in self.description_list]
-        print(tagged_sentences)
+        # print(tagged_sentences)
         words = []
         for word_token in tagged_sentences:
             noun_list = []
@@ -31,4 +31,4 @@ class EntityReferencer:
                             else:
                                 self.referencing_Dic[pos[0][0]] = word
 
-        print(self.referencing_Dic)
+        return self.referencing_Dic

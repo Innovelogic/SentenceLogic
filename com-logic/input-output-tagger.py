@@ -34,19 +34,16 @@ print('Sample problem :' + str(example_sentence))
 entity_set = extract_nn(example_sentence)
 print('Entity Set:' + str(entity_set))
 
-#features = ['then','result','generate','create','give','turn','operate','start']
-
-outputIndicators = ['then','will','activate''generate','create','give','turn','operate','start']
+outputIndicators = ['then','will','activate''generate','create','give','turn','operate','start','result']
 inputIndicators = ['and','if','only','when','either','all']
 
 neighbourDic = {}  # neighbours dictionary (word->[neighbours])
-inputSet=set()    # set ot inputs
-outputSet =set()  # set ot inputs
+inputSet = set()    # set ot inputs
+outputSet = set()  # set ot inputs
 
 for sentence in sentences:
     for entity in entity_set:
         r1 = re.search(r"(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,2}"+entity+"(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,2}",sentence)  # get the surrounded words of a given word
-
         if(r1 is None):
             continue
         else:

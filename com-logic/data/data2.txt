@@ -1,1 +1,0 @@
-The is an engine to be operated by closing a door and a window.

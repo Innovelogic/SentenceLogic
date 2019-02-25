@@ -5,8 +5,8 @@ from nltk.stem import WordNetLemmatizer
 
 
 class InputOutputIdentifier:
-    outputIndicators = ['then', 'will', 'activate','generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring','switch']
-    inputIndicators = ['and','or','if','only','when','either','all']
+    outputIndicators = ['then', 'will', 'activate','generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring']
+    inputIndicators = ['and','or','if','only','when','either','all','provided']
 
     def __init__(self, entity_set,text):
         self.entity_set = entity_set
@@ -22,10 +22,12 @@ class InputOutputIdentifier:
         for entity in self.entity_set:
             self.neighbour_dic[entity] = []
             for sentence in sentences:
-                r1 = re.search(r"(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,3}" + entity + "(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,3}",sentence)
+                r1 = re.search(r"(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,3}" + entity + "(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,4}",sentence)
+
                 if r1 is None:
                     continue
                 else:
+                    #print(r1.group())
                     for i in word_tokenize(r1.group()):
                         self.neighbour_dic[entity].append(i)
                     # self.neighbour_dic[entity]= self.neighbour_dic[entity]+word_tokenize(r1.group())
@@ -37,7 +39,8 @@ class InputOutputIdentifier:
             stem_neighbours = []
             #print(neighbours)
             for neighbour in neighbours:
-                stem_neighbours.append(lemma.lemmatize(neighbour, pos = 'v'))
+                elemnt = lemma.lemmatize(neighbour, pos = 'v')
+                stem_neighbours.append(elemnt.lower())
             #print(stem_neighbours)
             for stem_neighbour in stem_neighbours:
                 if stem_neighbour in InputOutputIdentifier.inputIndicators:  # check whether a stem word is inside input indicators

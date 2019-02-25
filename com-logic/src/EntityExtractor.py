@@ -51,11 +51,16 @@ class EntityExtractor:
         sentences = sent_tokenize(self.text)
         grammar = r"""
               NBAR  : {<NN.*>*<NN.*>}                
-              CCAR  : {<CC><NBAR>}  
-              NCAR  : {<NBAR><CCAR>*}                 
-              NOV   : {<VBZ|VBP><RB>}                
-              GR    : {<NBAR|NCAR><VBZ|VBP|NOV><VBN|JJ|VBG>}
+              CCAR  : {<CC><NBAR>}     # [and X]
+              NCAR  : {<NBAR><CCAR>*}  # Pressure sensor [and X][and Y][and Z]                
+              FUTPAS: {<MD><RB>*<VB>}
+              NOV   : {<VBZ|VBP><RB>}
+              PAS   : {<VBZ|VBP|FUTPAS|NOV><RB>*<VBN|JJ|VBG>}
+              NOT   : {<VBZ|VBP><RB><VB>} 
+              ACT   : {<RB>*<VBZ|VBP|FUTPAS|NOT>}               
+              GR    : {<NBAR|NCAR><ACT|PAS>}
               """
+
         for sent in sentences:
             words = word_tokenize(sent)
             tagged = pos_tag(words)
@@ -66,7 +71,7 @@ class EntityExtractor:
                 if s.label() == "GR":
                     current_str = ""
                     for token in s.leaves():
-                        if token[1] == "NNS" or token[1] == "VBZ" or token[1] == "VBP" or token[1] == "NOV":
+                        if token[1] == "NNS" or token[1] == "VBZ" or token[1] == "VBP" or token[1] == "NOV" or token[1] == "MD" or token[1] == "RB":
                             break
                         elif token[1] == "CC":
                             self.entitySet.add(current_str)

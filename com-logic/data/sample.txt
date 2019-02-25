@@ -1,3 +1,17 @@
-Write the boolean expression for the logic network that have a 1 output when X=1,Y=0,Z=0;X=1,Y=1,Z=0; and X=1,Y=1,Z=1. The circuit will have a 0 output for all other sets of input values. Simplify the expression derived and draw a block diagram for the simplified expression.
-Q.When there is fire and sudden smoke the alarm will start.
-Q.If there is a bulb which blinks when there is m
+1. There is a door,window and a safe inside a room. The safe is unlocked , provided that the door is closed and the window is opened in the room.
+2. There is a lamp in a room. That lamp lightens, if sensor A or sensor B is giving a signal according to the condition of the room.
+3.There is to be a motor is operated, when either switch A or switch B is activated.
+4.There is a vehicle with two doors D1 and D2. Also it has an indicator light to show those two doors are closed. When one or both doors are open, indicator light will be switched on. When both doors are closed, the indicator light is switched off.
+5.Three sensors S1, S2, and S3 are attached to a printing device. Also three alarms A1, A2, and A3 are attached to them. If the S3 or S2 is giving a signal, then A1 is sounded. If the S2 or S1 is giving a signal, then A2 sounds. If two or more sensors are giving a signal, then A3 is sounded.
+6.If both Person Sensor and Alarm Switch are on, then Burglar Alarm is activated.
+7.If Chimney is not blocked and the house is cold and the pilot light is switched on, then main fuel valve is opened to start up the boiler.
+8.A fire alarm system consists of three sensors S1, S2, and S3 to detect smoke, flame, and heat respectively. The fire alarm is active, when at least two of the sensors are active in the system.
+9.A pump will be switched on if pump start switch is put or test switch is put.
+10. There are three sensors in a manufacturing building S1, S2, and S3. Also there are two alarms A1, and A2. If either two sensors indicate high, then both A1 and A2 are active. If only one of sensors is high, then A1 is active. If neither of sensors are high, then no alarm is active. I/O Status: Sensor is high=1. Alarm is active= 1.
+11.A solenoid valve is to be activated if sensor A gives an input.
+12.There is an automatic fan controller in a room, which is having a  Heat detector and an LDR. If both Heat detector and LDR are active in the room, then the fan will be switched on.
+13. There is a street light controller in a city. That system is having an operator switch and an LDR. If the operator switch is put on, then the light will be switched on. Also if the LDR is deactivated, then the light will be switched on.
+14.There are three bulbs inside a room B1, B2, and B3. Also there are four motion sensors S1, S2, S3, and S4. If either two sensors are active, then B1 is blinked. If only one of sensors is active, then B2 is blinked. If neither sensors are active, then  B3 is blinked
+15.There are three doors in a room D1, D2, D3. Also there are two light bulbs B1 and B2. If either two doors are opened, then B1 is blinked. If only one of doors is opened, then B2 is blinked. If neither doors are opened, then both B1 and B2 are blinked.
+16.There are three heaters in a greenhouse H1, H2, and H3. Also there are three temperature sensors T1, T2, T3, and T4. If either two sensors indicate cold, then H2 and H3 are active. If only one of sensors indicates cold, then H1 is active. If neither sensors indicate cold, then H2 is active.
+17. There are 3 doors for a room DI,D2 and D3. Each door has one switch. Switches are S1, S2 & S3 to control a light L1 inside the room. When all switches are open light is Off. Closing one switch will light the bulb & closing the second switch will switch off the light. When two switches are off and light is off, third switch will on the light.

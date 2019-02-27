@@ -5,7 +5,7 @@ from nltk.stem import WordNetLemmatizer
 
 
 class InputOutputIdentifier:
-    outputIndicators = ['then', 'will', 'activate','generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring']
+    outputIndicators = ['then','would', 'will', 'activate','generate', 'create', 'give', 'turn', 'operate', 'start','unlock','to','ring']
     inputIndicators = ['and','or','if','only','when','either','all','provided']
 
     def __init__(self, entity_set,text):

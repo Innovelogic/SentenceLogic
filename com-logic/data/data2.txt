@@ -1,0 +1,1 @@
+There is a door,window and a safe inside a room. The safe is unlocked , provided that the door is closed and the window is opened in the room. I/O_Status:Door is opened =1, Window is opened = 1, Safe is unlocked = 1.

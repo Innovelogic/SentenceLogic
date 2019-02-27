@@ -1,0 +1,3 @@
+Door is opened =1.
+Window is opened =1.
+Light is switched on =1.
